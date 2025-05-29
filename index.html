@@ -1,26 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Persian Gulf Chain</title>
+  <meta charset="UTF-8" />
+  <title>Persian Gulf Blockchain</title>
+  <!-- لوگو favicon اضافه کن (فایل favicon.png باید کنار این فایل باشه) -->
+  <link rel="icon" type="image/png" href="favicon.png" />
   <style>
     body {
-      background: #000;
-      color: #0ff;
+      background-color: #000;
+      color: #0f0;
       font-family: monospace;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      font-size: 1.5rem;
-      text-align: center;
+      padding: 2rem;
+      font-size: 1.2rem;
+      text-align: left;
+    }
+    #terminal {
+      max-width: 800px;
+      margin: auto;
+      white-space: normal;
+      line-height: 1.5;
+    }
+    #github-link {
+      max-width: 800px;
+      margin: 1rem auto;
+      font-family: monospace;
+      font-size: 1.2rem;
+      text-align: left;
+    }
+    a {
+      color: #0ff;
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <div>
-    <p>Persian Gulf Blockchain</p>
-    <p>Coming soon...</p>
-  </div>
+
+<div id="terminal"></div>
+
+<div id="github-link"></div>
+
+<script>
+  const lines = [
+    "Initializing Persian Gulf Blockchain...",
+    "Genesis Block Created.",
+    "Status: Under Development",
+    "",
+    "Coming Soon..."
+  ];
+
+  const terminal = document.getElementById('terminal');
+  const githubLink = document.getElementById('github-link');
+
+  let line = 0;
+  let char = 0;
+
+  function typeLine() {
+    if (line < lines.length) {
+      if (char < lines[line].length) {
+        if (!terminal.lastChild || terminal.lastChild.tagName !== 'SPAN') {
+          const span = document.createElement('span');
+          terminal.appendChild(span);
+        }
+        terminal.lastChild.textContent += lines[line].charAt(char);
+        char++;
+        setTimeout(typeLine, 50);
+      } else {
+        terminal.appendChild(document.createElement('br'));
+        line++;
+        char = 0;
+        setTimeout(typeLine, 400);
+      }
+    } else {
+      const a = document.createElement('a');
+      a.href = "https://github.com/enayat058";
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      a.textContent = "GitHub Repository: https://github.com/enayat058";
+      githubLink.appendChild(a);
+    }
+  }
+
+  typeLine();
+</script>
+
 </body>
 </html>
